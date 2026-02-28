@@ -70,6 +70,7 @@ a {
   font-size: 1.7rem;
   font-weight: 700;
   letter-spacing: 0.06em;
+  text-decoration: none;
 }
 
 .menu {
@@ -83,6 +84,8 @@ a {
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
+  padding: 0.25rem 0.35rem;
+  border-radius: 6px;
 }
 
 .menu a:hover {
@@ -98,6 +101,10 @@ a {
 
 .section {
   padding: 5rem 0 2rem;
+  scroll-margin-top: 6.5rem;
+}
+
+:target {
   scroll-margin-top: 6.5rem;
 }
 
@@ -219,6 +226,46 @@ h2 {
   align-items: center;
 }
 
+.about-copy {
+  display: grid;
+  gap: 1rem;
+}
+
+.about-highlights {
+  display: grid;
+  gap: 0.7rem;
+}
+
+.about-highlight-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: rgba(29, 44, 79, 0.45);
+}
+
+.about-highlight-item h3 {
+  margin-bottom: 0.2rem;
+}
+
+.about-highlight-item p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.about-highlight-icon {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 217, 165, 0.16);
+  border: 1px solid rgba(0, 217, 165, 0.35);
+  color: var(--accent);
+}
+
 .about-photo {
   border: 1px solid var(--line);
   min-height: 320px;
@@ -309,6 +356,33 @@ h2 {
   gap: 1rem;
 }
 
+.timeline-list {
+  gap: 1.2rem;
+}
+
+.timeline-card {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.timeline-step {
+  justify-self: end;
+  width: fit-content;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+  background: rgba(29, 44, 79, 0.6);
+}
+
+.timeline-card > :not(.timeline-step) {
+  position: relative;
+  z-index: 1;
+}
+
 .experience-head {
   display: flex;
   justify-content: space-between;
@@ -339,6 +413,22 @@ h2 {
   overflow: hidden;
 }
 
+.project-top {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.7rem 1rem 0;
+}
+
+.project-index {
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.2rem 0.55rem;
+}
+
 .project-image {
   min-height: 150px;
   border-bottom: 1px solid var(--line);
@@ -360,11 +450,27 @@ h2 {
   text-align: center;
 }
 
+.btn-disabled {
+  opacity: 0.55;
+  pointer-events: none;
+}
+
 /* Testimonials */
 .testimonial-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1rem;
+}
+
+.testimonial-card {
+  position: relative;
+  display: grid;
+  gap: 0.7rem;
+}
+
+.testimonial-icon {
+  color: rgba(0, 217, 165, 0.75);
+  font-size: 1rem;
 }
 
 .quote {
@@ -378,6 +484,12 @@ h2 {
   gap: 1rem;
 }
 
+.contact-primary,
+.contact-secondary {
+  display: grid;
+  gap: 0.9rem;
+}
+
 .contact-list {
   margin: 0.9rem 0 0;
   padding-left: 1rem;
@@ -385,24 +497,127 @@ h2 {
   gap: 0.45rem;
 }
 
-.contact-form {
+.contact-link-list {
+  list-style: none;
+  margin-top: 0.2rem;
+  padding-left: 0;
+  gap: 0.6rem;
+}
+
+.contact-link-list a {
   display: grid;
-  gap: 0.55rem;
-}
-
-.contact-form input,
-.contact-form textarea {
-  width: 100%;
+  grid-template-columns: auto 1fr;
+  gap: 0.65rem;
+  align-items: center;
+  text-decoration: none;
   border: 1px solid var(--line);
-  background: var(--panel-soft);
-  color: var(--text);
-  padding: 0.72rem;
+  background: rgba(29, 44, 79, 0.45);
   border-radius: 12px;
-  font-family: inherit;
+  padding: 0.55rem 0.6rem;
 }
 
-.contact-form button {
-  cursor: pointer;
+.contact-link-icon {
+  width: 30px;
+  height: 30px;
+  border-radius: 9px;
+  display: grid;
+  place-items: center;
+  background: rgba(0, 217, 165, 0.16);
+  border: 1px solid rgba(0, 217, 165, 0.35);
+  color: var(--accent);
+}
+
+.contact-link-copy {
+  display: grid;
+  line-height: 1.25;
+}
+
+.contact-link-copy small {
+  color: var(--muted);
+  overflow-wrap: anywhere;
+}
+
+.contact-checklist {
+  margin: 0;
+  padding-left: 1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.contact-checklist li {
+  color: #c6d2ed;
+}
+
+.contact-secondary .btn {
+  width: fit-content;
+}
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.contact-actions .btn {
+  flex: 0 0 auto;
+  min-width: 0;
+  width: auto;
+  padding: 0.62rem 0.9rem;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.contact-link-list a:hover {
+  border-color: var(--accent);
+}
+
+.contact-link-list a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.menu a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.contact-link-list a {
+  width: 100%;
+}
+
+@media (min-width: 721px) {
+  .contact-secondary .btn {
+    width: fit-content;
+  }
+}
+
+@media (max-width: 520px) {
+  .contact-actions .btn {
+    flex: 1 1 auto;
+    min-width: 8.5rem;
+  }
+
+  .project-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .project-actions .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 380px) {
+  .contact-actions .btn {
+    flex: 1 1 100%;
+    width: 100%;
+  }
 }
 
 /* Footer + utility */
@@ -417,20 +632,6 @@ h2 {
   text-align: center;
   color: var(--muted);
   font-size: 0.85rem;
-}
-
-.scroll-top {
-  position: fixed;
-  right: 1rem;
-  bottom: 1rem;
-  width: 42px;
-  height: 42px;
-  display: grid;
-  place-items: center;
-  border-radius: 50%;
-  background: #2f79ff;
-  color: #fff;
-  text-decoration: none;
 }
 
 /* Reveal */
@@ -458,6 +659,24 @@ h2 {
 }
 
 /* Responsive */
+@media (max-width: 1024px) {
+  .shell {
+    padding: 0 1.2rem;
+  }
+
+  .section {
+    padding: 4.5rem 0 1.8rem;
+  }
+
+  .hero {
+    min-height: 72vh;
+  }
+
+  .panel {
+    padding: 1rem;
+  }
+}
+
 @media (max-width: 980px) {
   .about-grid,
   .skills-grid,
@@ -474,6 +693,60 @@ h2 {
 
   .hero-text {
     max-width: 100%;
+  }
+
+  .project-top {
+    padding-top: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .shell {
+    padding: 0 1rem;
+  }
+
+  .topbar {
+    padding: 0.8rem 0.95rem;
+  }
+
+  .menu {
+    gap: 0.55rem 0.8rem;
+  }
+
+  .menu a {
+    font-size: 0.82rem;
+    padding: 0.22rem 0.32rem;
+  }
+
+  .section {
+    padding: 3.8rem 0 1.6rem;
+    scroll-margin-top: 5.8rem;
+  }
+
+  :target {
+    scroll-margin-top: 5.8rem;
+  }
+
+  .section-label {
+    margin-bottom: 0.65rem;
+  }
+
+  .hero-actions {
+    width: 100%;
+    gap: 0.65rem;
+  }
+
+  .hero-actions .btn {
+    flex: 1 1 12rem;
+    text-align: center;
+  }
+
+  .project-body {
+    padding: 0.9rem;
+  }
+
+  .contact-grid {
+    gap: 0.85rem;
   }
 }
 
@@ -495,6 +768,10 @@ h2 {
     scroll-margin-top: 6rem;
   }
 
+  :target {
+    scroll-margin-top: 6rem;
+  }
+
   .hero-actions {
     flex-wrap: wrap;
   }
@@ -507,11 +784,99 @@ h2 {
     min-height: 220px;
     font-size: 2.2rem;
   }
+}
 
-  .scroll-top {
-    right: 0.7rem;
-    bottom: 0.7rem;
-    width: 38px;
-    height: 38px;
+@media (max-width: 375px) {
+  .shell {
+    padding: 0 0.78rem;
+  }
+
+  .topbar {
+    gap: 0.55rem;
+    padding: 0.72rem 0.72rem;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+  }
+
+  .menu {
+    gap: 0.45rem 0.65rem;
+  }
+
+  .menu a {
+    font-size: 0.76rem;
+    letter-spacing: 0.05em;
+  }
+
+  .section {
+    padding: 3.35rem 0 1.45rem;
+    scroll-margin-top: 5.45rem;
+  }
+
+  :target {
+    scroll-margin-top: 5.45rem;
+  }
+
+  h2 {
+    margin-bottom: 0.95rem;
+  }
+
+  .hero-subtext {
+    font-size: 0.98rem;
+  }
+
+  .btn {
+    font-size: 0.78rem;
+    padding: 0.68rem 0.8rem;
+  }
+
+  .panel {
+    border-radius: 14px;
+    padding: 0.85rem;
+  }
+
+  .about-highlight-item {
+    padding: 0.62rem;
+  }
+
+  .project-image {
+    min-height: 122px;
+  }
+}
+
+@media (max-width: 320px) {
+  .shell {
+    padding: 0 0.62rem;
+  }
+
+  .section {
+    padding: 3.05rem 0 1.25rem;
+    scroll-margin-top: 5.15rem;
+  }
+
+  :target {
+    scroll-margin-top: 5.15rem;
+  }
+
+  .menu a {
+    font-size: 0.72rem;
+  }
+
+  .hero-text {
+    font-size: 1.8rem;
+    line-height: 1.05;
+  }
+
+  .hero-subtext {
+    font-size: 0.93rem;
+  }
+
+  .timeline-step {
+    font-size: 0.68rem;
+  }
+
+  .contact-link-list a {
+    padding: 0.48rem 0.5rem;
   }
 }

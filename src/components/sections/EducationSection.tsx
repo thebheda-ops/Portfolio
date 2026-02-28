@@ -11,9 +11,15 @@ export function EducationSection({ items }: EducationSectionProps) {
       <h2>
         Academic <span className='accent'>Background</span>
       </h2>
-      <div className='experience-list'>
-        {items.map((item) => (
-          <article key={item.title} className='panel experience-card'>
+      <div className='experience-list timeline-list'>
+        {items.map((item, index) => (
+          <article
+            key={`${item.title}-${item.period}`}
+            className='panel experience-card timeline-card'
+          >
+            <span className='timeline-step' aria-hidden='true'>
+              {String(index + 1).padStart(2, "0")}
+            </span>
             <div className='experience-head'>
               <div>
                 <h3>{item.title}</h3>

@@ -24,7 +24,9 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
 
   return (
     <header className={`topbar ${scrolled ? "scrolled" : ""}`}>
-      <p className='logo'>{brand.toUpperCase()}</p>
+      <a className='logo' href='#home' aria-label='Go to top section'>
+        {brand.toUpperCase()}
+      </a>
       <nav className='menu'>
         {navItems.map((item) => (
           <a key={item.href} href={item.href}>

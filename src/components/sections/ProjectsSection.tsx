@@ -13,8 +13,15 @@ export function ProjectsSection({ projects, githubUrl }: ProjectsSectionProps) {
         Featured <span className='accent'>Projects</span>
       </h2>
       <div className='projects-grid'>
-        {projects.map((project) => (
-          <article key={project.title} className='project-card'>
+        {projects.map((project, index) => {
+          const hasDemo = Boolean(project.demoUrl && project.demoUrl !== "#");
+          return (
+            <article key={project.title} className='project-card'>
+              <div className='project-top'>
+                <p className='project-index'>
+                  Project {String(index + 1).padStart(2, "0")}
+                </p>
+              </div>
             <div className='project-image' aria-hidden='true' />
             <div className='project-body'>
               <h3>{project.title}</h3>
@@ -29,13 +36,19 @@ export function ProjectsSection({ projects, githubUrl }: ProjectsSectionProps) {
                 >
                   Code
                 </a>
-                <a className='btn btn-primary' href={project.demoUrl ?? "#"}>
+                <a
+                  className={`btn btn-primary ${hasDemo ? "" : "btn-disabled"}`}
+                  href={hasDemo ? project.demoUrl : "#"}
+                  aria-disabled={!hasDemo}
+                  tabIndex={hasDemo ? 0 : -1}
+                >
                   Demo
                 </a>
               </div>
             </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </section>
   );

@@ -141,6 +141,7 @@ export const pageContent: PageContent = {
     intro:
       "Explore my work and connect for freelance opportunities and collaboration.",
     email: siteConfig.email,
+    whatsappUrl: siteConfig.social.whatsapp,
     linkedinUrl: siteConfig.social.linkedin,
     githubUrl: siteConfig.social.github,
     portfolioUrl: siteConfig.social.portfolio,

@@ -63,10 +63,6 @@ export default function App() {
         </div>
       </main>
 
-      <a href='#home' className='scroll-top' aria-label='Back to top'>
-        ^
-      </a>
-
       <SiteFooter brand={pageContent.brand} />
     </div>
   );

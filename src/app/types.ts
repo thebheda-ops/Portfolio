@@ -53,6 +53,7 @@ export type ContactContent = {
   highlight: string;
   intro: string;
   email: string;
+  whatsappUrl: string;
   linkedinUrl: string;
   githubUrl: string;
   portfolioUrl: string;
