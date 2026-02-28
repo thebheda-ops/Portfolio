@@ -14,7 +14,7 @@ export const pageContent: PageContent = {
     title: "About",
     highlight: "Me",
     description:
-      "I do not just write code; I enjoy the challenge of solving complex problems and the constant journey of learning how to build better software. Driven by curiosity and a love for the craft, I am looking for opportunities to contribute to innovative projects and grow alongside a talented team.",
+      "I don't just write code; I enjoy the challenge of solving complex problems and the constant journey of learning how to build better software. Driven by curiosity and a love for the craft, I am looking for opportunities to contribute to innovative projects and grow alongside a talented team.",
     photoLabel: "BK",
   },
   skillGroups: [
@@ -35,7 +35,8 @@ export const pageContent: PageContent = {
       period: "March 2023 - August 2024 (1 year 6 months)",
       title: "Freelance Web Developer",
       org: "Gizmo Store",
-      detail: "Delivered client websites and improved user-facing web experiences.",
+      detail:
+        "Delivered client websites and improved user-facing web experiences.",
     },
   ],
   education: [
@@ -43,8 +44,7 @@ export const pageContent: PageContent = {
       period: "December 2025 - December 2029",
       title: "Bachelor of Computer Application (BCA)",
       org: "Divya Gyan College of Technology and Management",
-      detail:
-        "Computer Information Technology Administration and Management.",
+      detail: "Computer Information Technology Administration and Management.",
     },
     {
       period: "2023 - 2025",
