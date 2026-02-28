@@ -24,6 +24,13 @@ export type ExperienceItem = {
   detail: string;
 };
 
+export type EducationItem = {
+  period: string;
+  title: string;
+  org: string;
+  detail: string;
+};
+
 export type Project = {
   title: string;
   summary: string;
@@ -43,6 +50,7 @@ export type ContactContent = {
   email: string;
   linkedinUrl: string;
   githubUrl: string;
+  portfolioUrl: string;
 };
 
 export type PageContent = {
@@ -51,8 +59,8 @@ export type PageContent = {
   about: AboutContent;
   skillGroups: SkillGroup[];
   experience: ExperienceItem[];
+  education: EducationItem[];
   projects: Project[];
   testimonials: Testimonial[];
   contact: ContactContent;
 };
-

@@ -3,6 +3,7 @@ import { SiteFooter } from "../components/layout/SiteFooter";
 import { SiteHeader } from "../components/layout/SiteHeader";
 import { AboutSection } from "../components/sections/AboutSection";
 import { ContactSection } from "../components/sections/ContactSection";
+import { EducationSection } from "../components/sections/EducationSection";
 import { ExperienceSection } from "../components/sections/ExperienceSection";
 import { HeroSection } from "../components/sections/HeroSection";
 import { ProjectsSection } from "../components/sections/ProjectsSection";
@@ -44,6 +45,9 @@ export default function App() {
         </div>
         <div className='reveal reveal-delay-2'>
           <ExperienceSection items={pageContent.experience} />
+        </div>
+        <div className='reveal reveal-delay-2'>
+          <EducationSection items={pageContent.education} />
         </div>
         <div className='reveal reveal-delay-2'>
           <ProjectsSection

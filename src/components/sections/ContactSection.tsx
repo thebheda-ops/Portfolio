@@ -6,6 +6,7 @@ type ContactSectionProps = {
     email: string;
     linkedinUrl: string;
     githubUrl: string;
+    portfolioUrl: string;
   };
 };
 
@@ -30,6 +31,11 @@ export function ContactSection({ contact }: ContactSectionProps) {
             <li>
               <a href={contact.githubUrl} target='_blank' rel='noreferrer'>
                 GitHub Profile
+              </a>
+            </li>
+            <li>
+              <a href={contact.portfolioUrl} target='_blank' rel='noreferrer'>
+                Portfolio
               </a>
             </li>
           </ul>

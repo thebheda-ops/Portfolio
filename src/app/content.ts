@@ -4,47 +4,53 @@ import type { PageContent } from "./types";
 export const pageContent: PageContent = {
   brand: siteConfig.brand,
   hero: {
-    role: "Freelance MERN Developer",
-    availability: "Available for new projects",
-    headline: "I build clean, scalable web products for businesses that need reliable delivery.",
+    role: "MERN Stack Developer | Problem Solver | Tech Enthusiast",
+    availability: siteConfig.location,
+    headline: "I build things for the web.",
     subtext:
-      "From landing pages to full-stack platforms, I deliver practical MERN solutions with clear architecture, clean code, and measurable outcomes.",
+      "My focus is on creating clean, responsive, and user-centric digital experiences while solving real problems with practical code.",
   },
   about: {
     title: "About",
     highlight: "Me",
     description:
-      "I am a developer focused on building practical web solutions with strong UX and maintainable code. I enjoy solving real business problems with the MERN stack and continuously improving my development standards.",
+      "I do not just write code; I enjoy the challenge of solving complex problems and the constant journey of learning how to build better software. Driven by curiosity and a love for the craft, I am looking for opportunities to contribute to innovative projects and grow alongside a talented team.",
     photoLabel: "BK",
   },
   skillGroups: [
     {
-      title: "Frontend",
-      items: ["React", "Vite", "Tailwind CSS", "TypeScript"],
-    },
-    {
-      title: "Backend & DB",
-      items: ["Node.js", "Express", "MongoDB", "REST APIs"],
-    },
-    {
-      title: "Tools & CI/CD",
-      items: ["Git & GitHub", "Vercel", "Netlify", "Postman"],
+      title: "Top Skills",
+      items: ["WordPress", "Web Development", "Graphics"],
     },
   ],
   experience: [
     {
-      period: "2024 - Present",
-      title: "Frontend Developer (Self-Directed Learning)",
-      org: "Personal Projects & Practice",
+      period: "March 2023 - Present (3 years)",
+      title: "Freelance Web Developer",
+      org: "Freelancer",
       detail:
-        "Building responsive web applications while strengthening frontend architecture, reusable components, and API integration patterns.",
+        "Built websites for local businesses including tattoo studios and travel brands.",
+    },
+    {
+      period: "March 2023 - August 2024 (1 year 6 months)",
+      title: "Freelance Web Developer",
+      org: "Gizmo Store",
+      detail: "Delivered client websites and improved user-facing web experiences.",
+    },
+  ],
+  education: [
+    {
+      period: "December 2025 - December 2029",
+      title: "Bachelor of Computer Application (BCA)",
+      org: "Divya Gyan College of Technology and Management",
+      detail:
+        "Computer Information Technology Administration and Management.",
     },
     {
       period: "2023 - 2025",
-      title: "+2 (Management)",
-      org: "Trinity International SS & College",
-      detail:
-        "Completed coursework in core software concepts and practical web development foundations.",
+      title: "+2, Computer Science",
+      org: "Trinity Int'l SS/College",
+      detail: "Higher secondary studies in computer science.",
     },
   ],
   projects: [
@@ -86,10 +92,10 @@ export const pageContent: PageContent = {
     title: "Get In",
     highlight: "Touch",
     intro:
-      "I am available for freelance projects and collaborations that need modern, reliable MERN development.",
+      "Explore my work and connect for freelance opportunities and collaboration.",
     email: siteConfig.email,
     linkedinUrl: siteConfig.social.linkedin,
     githubUrl: siteConfig.social.github,
+    portfolioUrl: siteConfig.social.portfolio,
   },
 };
-
