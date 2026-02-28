@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
 type SiteHeaderProps = { brand: string };
@@ -8,6 +8,7 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [theme, setTheme] = useState<Theme>("dark");
+  const headerRef = useRef<HTMLElement | null>(null);
   const navItems = [
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
@@ -55,13 +56,43 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
     localStorage.setItem("theme", theme);
   }, [theme]);
 
+  useEffect(() => {
+    if (!isMenuOpen) return;
+
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsMenuOpen(false);
+      }
+    };
+
+    const closeOnOutsideClick = (event: MouseEvent) => {
+      const target = event.target as Node | null;
+      if (headerRef.current && target && !headerRef.current.contains(target)) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("keydown", closeOnEscape);
+    document.addEventListener("mousedown", closeOnOutsideClick);
+
+    return () => {
+      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("mousedown", closeOnOutsideClick);
+    };
+  }, [isMenuOpen]);
+
   const toggleTheme = () => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
   };
 
   return (
-    <header className={`topbar ${scrolled ? "scrolled" : ""}`}>
-      <a className='logo' href='#home' aria-label='Go to top section'>
+    <header ref={headerRef} className={`topbar ${scrolled ? "scrolled" : ""}`}>
+      <a
+        className='logo'
+        href='#home'
+        aria-label='Go to top section'
+        onClick={() => setIsMenuOpen(false)}
+      >
         {brand.toUpperCase()}
       </a>
 
