@@ -887,11 +887,13 @@ h2 {
 @media (max-width: 560px) {
   .topbar {
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     align-items: center;
     justify-content: space-between;
     gap: 0.45rem;
     padding: 0.72rem 0.8rem;
+    position: sticky;
+    overflow: visible;
   }
 
   .menu-toggle {
@@ -909,11 +911,18 @@ h2 {
 
   .menu {
     display: none;
-    width: 100%;
-    order: 3;
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0.8rem;
+    right: 0.8rem;
     flex-direction: column;
     gap: 0.35rem;
-    padding-top: 0.2rem;
+    padding: 0.45rem;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--panel);
+    box-shadow: 0 10px 26px rgba(2, 10, 36, 0.35);
+    z-index: 30;
   }
 
   .menu.open {
