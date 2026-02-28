@@ -37,7 +37,12 @@ export function ContactSection({ contact }: ContactSectionProps) {
 
         <form className='panel contact-form'>
           <input id='name' name='name' type='text' placeholder='Your Name' />
-          <input id='email' name='email' type='email' placeholder='Your Email' />
+          <input
+            id='email'
+            name='email'
+            type='email'
+            placeholder='Your Email'
+          />
           <textarea
             id='message'
             name='message'
