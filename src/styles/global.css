@@ -109,6 +109,12 @@ a {
   gap: 1.5rem;
 }
 
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+
 .menu-toggle {
   display: none;
   width: 40px;
@@ -890,6 +896,10 @@ h2 {
 
   .menu-toggle {
     display: block;
+  }
+
+  .header-actions {
+    margin-left: auto;
   }
 
   .theme-toggle {

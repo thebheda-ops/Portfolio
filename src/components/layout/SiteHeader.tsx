@@ -96,28 +96,6 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
         {brand.toUpperCase()}
       </a>
 
-      <button
-        type='button'
-        className='theme-toggle'
-        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-        onClick={toggleTheme}
-      >
-        {theme === "dark" ? <FaSun /> : <FaMoon />}
-      </button>
-
-      <button
-        type='button'
-        className='menu-toggle'
-        aria-label='Toggle navigation menu'
-        aria-expanded={isMenuOpen}
-        aria-controls='site-menu'
-        onClick={() => setIsMenuOpen((prev) => !prev)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-
       <nav id='site-menu' className={`menu ${isMenuOpen ? "open" : ""}`}>
         {navItems.map((item) => (
           <a key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)}>
@@ -125,6 +103,30 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
           </a>
         ))}
       </nav>
+
+      <div className='header-actions'>
+        <button
+          type='button'
+          className='theme-toggle'
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          onClick={toggleTheme}
+        >
+          {theme === "dark" ? <FaSun /> : <FaMoon />}
+        </button>
+
+        <button
+          type='button'
+          className='menu-toggle'
+          aria-label='Toggle navigation menu'
+          aria-expanded={isMenuOpen}
+          aria-controls='site-menu'
+          onClick={() => setIsMenuOpen((prev) => !prev)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
     </header>
   );
 }
