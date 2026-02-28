@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
+import { FaMoon, FaSun } from "react-icons/fa6";
 
 type SiteHeaderProps = { brand: string };
+type Theme = "dark" | "light";
 
 export function SiteHeader({ brand }: SiteHeaderProps) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [theme, setTheme] = useState<Theme>("dark");
   const navItems = [
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
@@ -36,11 +39,40 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
     return () => mediaQuery.removeEventListener("change", handleChange);
   }, []);
 
+  useEffect(() => {
+    const saved = localStorage.getItem("theme");
+    if (saved === "dark" || saved === "light") {
+      setTheme(saved);
+      return;
+    }
+
+    const prefersLight = window.matchMedia("(prefers-color-scheme: light)").matches;
+    setTheme(prefersLight ? "light" : "dark");
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem("theme", theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+  };
+
   return (
     <header className={`topbar ${scrolled ? "scrolled" : ""}`}>
       <a className='logo' href='#home' aria-label='Go to top section'>
         {brand.toUpperCase()}
       </a>
+
+      <button
+        type='button'
+        className='theme-toggle'
+        aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        onClick={toggleTheme}
+      >
+        {theme === "dark" ? <FaSun /> : <FaMoon />}
+      </button>
 
       <button
         type='button'
