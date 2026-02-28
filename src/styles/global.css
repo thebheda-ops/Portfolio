@@ -490,6 +490,24 @@ h2 {
   gap: 0.9rem;
 }
 
+.contact-intro {
+  max-width: 60ch;
+}
+
+.contact-columns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+
+.contact-subtitle {
+  margin: 0 0 0.4rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+}
+
 .contact-list {
   margin: 0.9rem 0 0;
   padding-left: 1rem;
@@ -552,6 +570,23 @@ h2 {
   width: fit-content;
 }
 
+.contact-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.contact-pill {
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #dce5fb;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.22rem 0.55rem;
+  background: rgba(29, 44, 79, 0.6);
+}
+
 .contact-actions {
   display: flex;
   flex-wrap: wrap;
@@ -599,6 +634,10 @@ h2 {
 }
 
 @media (max-width: 520px) {
+  .contact-columns {
+    grid-template-columns: 1fr;
+  }
+
   .contact-actions .btn {
     flex: 1 1 auto;
     min-width: 8.5rem;
