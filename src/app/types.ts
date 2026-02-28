@@ -12,9 +12,14 @@ export type AboutContent = {
   photoLabel: string;
 };
 
+export type SkillItem = {
+  name: string;
+  note?: string;
+};
+
 export type SkillGroup = {
   title: string;
-  items: string[];
+  items: SkillItem[];
 };
 
 export type ExperienceItem = {

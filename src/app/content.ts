@@ -19,8 +19,55 @@ export const pageContent: PageContent = {
   },
   skillGroups: [
     {
-      title: "Top Skills",
-      items: ["WordPress", "Web Development", "Graphics"],
+      title: "Frontend",
+      items: [
+        {
+          name: "React",
+          note: "Component-driven interfaces and reusable UI patterns.",
+        },
+        {
+          name: "TypeScript",
+          note: "Strict typing for safer and more maintainable code.",
+        },
+        {
+          name: "Tailwind CSS",
+          note: "Rapid, consistent styling for responsive layouts.",
+        },
+      ],
+    },
+    {
+      title: "Web Delivery",
+      items: [
+        {
+          name: "WordPress",
+          note: "Business websites, content setup, and customization.",
+        },
+        {
+          name: "Web Development",
+          note: "End-to-end implementation from UI to deployment.",
+        },
+        {
+          name: "Graphics",
+          note: "Basic visual assets and branding-friendly design work.",
+        },
+      ],
+    },
+    {
+      title: "Backend & Tools",
+      items: [
+        {
+          name: "Node.js + Express",
+          note: "REST APIs and structured backend service patterns.",
+        },
+        {
+          name: "MongoDB",
+          note: "Schema design, querying, and app data integration.",
+        },
+        {
+          name: "Git & Deployment",
+          note: "GitHub workflows, Vercel deployment, and CI basics.",
+        },
+      ],
     },
   ],
   experience: [
