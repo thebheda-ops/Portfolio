@@ -1,11 +1,10 @@
 # MERN Portfolio Starter
 
 ## Structure
-- frontend: Vite + React + TypeScript + Tailwind-ready
+- frontend (root): Vite + React + TypeScript + Tailwind-ready
 - backend: Express + MongoDB-ready API
 
 ## Frontend
-- cd frontend
 - npm install
 - npm run dev
 
@@ -16,5 +15,5 @@
 - npm run dev
 
 ## Notes
-- Update frontend content in `frontend/src/App.tsx`
+- Update frontend content in `src/app/App.tsx`
 - Add your MongoDB URI in `backend/.env`
