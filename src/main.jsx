@@ -3,7 +3,7 @@ import { createRoot } from "preact/compat/client";
 import App from "./app/App";
 import "./styles/global.css";
 
-const SITE_IN_MAINTENANCE = false;
+const SITE_IN_MAINTENANCE = true;
 
 function MaintenanceScreen() {
   return (
