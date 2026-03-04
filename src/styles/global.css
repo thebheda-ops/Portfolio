@@ -73,6 +73,43 @@ a {
   color: inherit;
 }
 
+.maintenance-page {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.maintenance-card {
+  width: min(580px, 100%);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: var(--panel);
+  padding: 2rem 1.5rem;
+  box-shadow: 0 14px 38px rgba(2, 10, 36, 0.22);
+}
+
+.maintenance-tag {
+  width: fit-content;
+  margin-bottom: 0.75rem;
+  padding: 0.3rem 0.6rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.74rem;
+  color: var(--muted);
+}
+
+.maintenance-card h1 {
+  margin-bottom: 0.75rem;
+  color: var(--text-strong);
+}
+
+.maintenance-card p {
+  color: var(--panel-text);
+}
+
 .site {
   min-height: 100vh;
 }
