@@ -14,6 +14,10 @@ export const siteConfig = {
   brand: "BTM",
   location: "📍 Kathmandu, Bagmati, Nepal",
   email: "balkrishnathapamagar2005@gmail.com",
+  // Profile photo — swap this URL with your own hosted image when ready
+  photoUrl:
+    "https://media.licdn.com/dms/image/v2/D5603AQEz_GyDtpoqqA/profile-displayphoto-scale_400_400/B56Zy4ZKGwHAAk-/0/1772620131415?e=1774483200&v=beta&t=ICvDEztEBCOzEYxWS0aaSeux9yxsHUIYjnpehPflMsc",
+  // photoUrl: "https://github.com/theBheda-ops.png",
   social: {
     github: "https://github.com/theBheda-ops",
     whatsapp: "https://wa.me/9779705086562",

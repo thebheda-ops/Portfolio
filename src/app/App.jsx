@@ -12,13 +12,20 @@ const sectionIds = [
 ];
 
 const navItems = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#experience", label: "Experience" },
-  { href: "#education", label: "Education" },
-  { href: "#projects", label: "Projects" },
-  { href: "#contact", label: "Contact" },
+  { id: "about", label: "About" },
+  { id: "skills", label: "Skills" },
+  { id: "experience", label: "Experience" },
+  { id: "education", label: "Education" },
+  { id: "projects", label: "Projects" },
+  { id: "contact", label: "Contact" },
 ];
+
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 // Icon components
 const MapPinIcon = () => (
@@ -291,22 +298,32 @@ export default function App() {
         </button>
         <nav className='nav-links' aria-label='Primary'>
           {navItems.map((item) => {
-            const sectionId = item.href.replace("#", "");
-            const isActive = activeSection === sectionId;
+            const isActive = activeSection === item.id;
 
             return (
               <a
-                key={item.href}
-                href={item.href}
+                key={item.id}
+                href={`#${item.id}`}
                 className={isActive ? "is-active" : undefined}
-                onClick={() => setNavOpen(false)}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                  setNavOpen(false);
+                }}
               >
                 {item.label}
               </a>
             );
           })}
         </nav>
-        <a className='nav-cta' href='#contact'>
+        <a
+          className='nav-cta'
+          href='#contact'
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("contact");
+          }}
+        >
           Let's Talk
         </a>
       </header>
@@ -329,7 +346,14 @@ export default function App() {
             </p>
             <p className='hero-description'>{hero?.subtext}</p>
             <div className='hero-actions'>
-              <a href='#projects' className='btn-primary'>
+              <a
+                href='#projects'
+                className='btn-primary'
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("projects");
+                }}
+              >
                 View Projects <ArrowRightIcon />
               </a>
               <a
@@ -340,6 +364,21 @@ export default function App() {
               >
                 <WhatsAppIcon /> WhatsApp Me
               </a>
+            </div>
+          </div>
+          <div className='hero-image'>
+            <div className='hero-avatar'>
+              <img
+                src={siteConfig.photoUrl}
+                alt='Bal Krishna Thapa Magar'
+                onError={(e) => {
+                  e.currentTarget.style.display = "none";
+                  e.currentTarget.nextSibling.style.display = "flex";
+                }}
+              />
+              <div className='hero-avatar-fallback' style={{ display: "none" }}>
+                {about?.photoLabel || "BK"}
+              </div>
             </div>
           </div>
         </section>
@@ -502,9 +541,17 @@ export default function App() {
             <div className='contact-copy'>
               <p className='contact-intro'>{contact?.intro}</p>
               <ul className='contact-notes'>
-                <li>Based in Kathmandu and working remotely with clients across Nepal.</li>
-                <li>Available for freelance MERN projects, business websites, and dashboards.</li>
-                <li>Fastest response is usually on WhatsApp during daytime (NPT).</li>
+                <li>
+                  Based in Kathmandu and working remotely with clients across
+                  Nepal.
+                </li>
+                <li>
+                  Available for freelance MERN projects, business websites, and
+                  dashboards.
+                </li>
+                <li>
+                  Fastest response is usually on WhatsApp during daytime (NPT).
+                </li>
               </ul>
             </div>
             <div className='contact-grid'>
