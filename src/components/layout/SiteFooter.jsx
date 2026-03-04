@@ -1,6 +1,4 @@
-type SiteFooterProps = { brand: string };
-
-export function SiteFooter({ brand }: SiteFooterProps) {
+export function SiteFooter({ brand }) {
   const year = new Date().getFullYear();
 
   return (

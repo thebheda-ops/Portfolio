@@ -1,15 +1,9 @@
-import type { ExperienceItem } from "../../app/types";
-
-type ExperienceSectionProps = {
-  items: ExperienceItem[];
-};
-
-export function ExperienceSection({ items }: ExperienceSectionProps) {
+export function EducationSection({ items }) {
   return (
-    <section id='experience' className='section'>
-      <p className='section-label'>Experience</p>
+    <section id='education' className='section'>
+      <p className='section-label'>Education</p>
       <h2>
-        Experience & <span className='accent'>Learning</span>
+        Academic <span className='accent'>Background</span>
       </h2>
       <div className='experience-list timeline-list'>
         {items.map((item, index) => (

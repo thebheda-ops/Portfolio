@@ -1,11 +1,6 @@
-import type { Testimonial } from "../../app/types";
 import { FaQuoteLeft } from "react-icons/fa6";
 
-type TestimonialsSectionProps = {
-  items: Testimonial[];
-};
-
-export function TestimonialsSection({ items }: TestimonialsSectionProps) {
+export function TestimonialsSection({ items }) {
   return (
     <section id='testimonials' className='section'>
       <p className='section-label'>Testimonials</p>

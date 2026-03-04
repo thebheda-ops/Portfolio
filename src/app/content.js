@@ -1,7 +1,6 @@
 import { siteConfig } from "../constants/site";
-import type { PageContent } from "./types";
 
-export const pageContent: PageContent = {
+export const pageContent = {
   brand: siteConfig.brand,
   hero: {
     role: "MERN Stack Developer | Problem Solver | Tech Enthusiast",

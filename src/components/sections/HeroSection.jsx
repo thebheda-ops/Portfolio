@@ -1,10 +1,4 @@
-import type { HeroContent } from "../../app/types";
-
-type HeroSectionProps = {
-  hero: HeroContent;
-};
-
-export function HeroSection({ hero }: HeroSectionProps) {
+export function HeroSection({ hero }) {
   return (
     <section className='section hero' id='home'>
       <p className='section-label'>{hero.role}</p>

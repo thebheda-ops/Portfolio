@@ -1,5 +1,3 @@
-import type { SkillGroup } from "../../app/types";
-import type { IconType } from "react-icons";
 import {
   FaCode,
   FaGithub,
@@ -9,11 +7,7 @@ import {
 } from "react-icons/fa6";
 import { SiMongodb, SiTailwindcss, SiTypescript } from "react-icons/si";
 
-type SkillsSectionProps = {
-  groups: SkillGroup[];
-};
-
-const skillIcons: Record<string, IconType> = {
+const skillIcons = {
   React: FaReact,
   TypeScript: SiTypescript,
   "Tailwind CSS": SiTailwindcss,
@@ -25,7 +19,7 @@ const skillIcons: Record<string, IconType> = {
   "Git & Deployment": FaGithub,
 };
 
-export function SkillsSection({ groups }: SkillsSectionProps) {
+export function SkillsSection({ groups }) {
   const allSkills = groups.flatMap((group) => group.items);
 
   return (

@@ -1,11 +1,6 @@
-import type { AboutContent } from "../../app/types";
 import { FaCode, FaHandshake, FaLightbulb } from "react-icons/fa6";
 
-type AboutSectionProps = {
-  about: AboutContent;
-};
-
-export function AboutSection({ about }: AboutSectionProps) {
+export function AboutSection({ about }) {
   const highlights = [
     {
       title: "Problem Solving",

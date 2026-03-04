@@ -1,11 +1,6 @@
-import type { ContactContent } from "../../app/types";
 import { FaEnvelope, FaGithub, FaGlobe, FaLinkedin, FaWhatsapp } from "react-icons/fa6";
 
-type ContactSectionProps = {
-  contact: ContactContent;
-};
-
-export function ContactSection({ contact }: ContactSectionProps) {
+export function ContactSection({ contact }) {
   const directLinks = [
     {
       label: "Email",

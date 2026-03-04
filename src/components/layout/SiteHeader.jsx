@@ -1,14 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
-type SiteHeaderProps = { brand: string };
-type Theme = "dark" | "light";
-
-export function SiteHeader({ brand }: SiteHeaderProps) {
+export function SiteHeader({ brand }) {
   const [scrolled, setScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<Theme>("dark");
-  const headerRef = useRef<HTMLElement | null>(null);
+  const [theme, setTheme] = useState("dark");
+  const headerRef = useRef(null);
   const navItems = [
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
@@ -30,7 +27,7 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
   useEffect(() => {
     // Close mobile menu when switching back to wider screens.
     const mediaQuery = window.matchMedia("(min-width: 561px)");
-    const handleChange = (event: MediaQueryListEvent) => {
+    const handleChange = (event) => {
       if (event.matches) {
         setIsMenuOpen(false);
       }
@@ -59,15 +56,19 @@ export function SiteHeader({ brand }: SiteHeaderProps) {
   useEffect(() => {
     if (!isMenuOpen) return;
 
-    const closeOnEscape = (event: KeyboardEvent) => {
+    const closeOnEscape = (event) => {
       if (event.key === "Escape") {
         setIsMenuOpen(false);
       }
     };
 
-    const closeOnOutsideClick = (event: MouseEvent) => {
-      const target = event.target as Node | null;
-      if (headerRef.current && target && !headerRef.current.contains(target)) {
+    const closeOnOutsideClick = (event) => {
+      const target = event.target;
+      if (
+        headerRef.current &&
+        target instanceof Node &&
+        !headerRef.current.contains(target)
+      ) {
         setIsMenuOpen(false);
       }
     };
