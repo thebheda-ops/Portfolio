@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "preact/hooks";
 import { FaMoon, FaSun } from "react-icons/fa6";
 
 export function SiteHeader({ brand }) {
