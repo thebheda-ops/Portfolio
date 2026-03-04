@@ -1,9 +1,11 @@
 import { StrictMode } from "preact/compat";
 import { createRoot } from "preact/compat/client";
 import App from "./app/App";
+import SingleSheetPortfolio from "./app/SingleSheetPortfolio";
 import "./styles/global.css";
 
 const SITE_IN_MAINTENANCE = true;
+const SHOW_SINGLE_SHEET_PORTFOLIO = false;
 
 function MaintenanceScreen() {
   return (
@@ -22,6 +24,12 @@ function MaintenanceScreen() {
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    {SITE_IN_MAINTENANCE ? <MaintenanceScreen /> : <App />}
-  </StrictMode>
+    {SITE_IN_MAINTENANCE ? (
+      <MaintenanceScreen />
+    ) : SHOW_SINGLE_SHEET_PORTFOLIO ? (
+      <SingleSheetPortfolio />
+    ) : (
+      <App />
+    )}
+  </StrictMode>,
 );
