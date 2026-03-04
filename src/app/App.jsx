@@ -1,4 +1,7 @@
-import { pageContent } from "./content";
+import { useEffect, useState } from "preact/hooks";
+import { pageContent, siteConfig } from "./content";
+
+const sectionIds = ["home", "about", "skills", "experience", "education", "projects", "contact"];
 
 const navItems = [
   { href: "#about", label: "About" },
@@ -27,6 +30,9 @@ function TimelineList({ items }) {
 }
 
 export default function App() {
+  const [activeSection, setActiveSection] = useState("home");
+  const [navOpen, setNavOpen] = useState(false);
+
   const {
     brand,
     hero,
@@ -38,6 +44,35 @@ export default function App() {
     testimonials,
     contact,
   } = pageContent;
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const id = entry.target.id;
+            if (id) {
+              setActiveSection(id);
+            }
+          }
+        });
+      },
+      {
+        root: null,
+        rootMargin: "0px 0px -55% 0px",
+        threshold: 0.3,
+      },
+    );
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
 
   const contactLinks = [
     contact?.email
@@ -82,25 +117,45 @@ export default function App() {
       <div className='bg-glow bg-glow-left' aria-hidden='true' />
       <div className='bg-glow bg-glow-right' aria-hidden='true' />
 
-      <header className='top-nav'>
+      <header className={`top-nav${navOpen ? " is-open" : ""}`}>
         <a href='#home' className='brand-mark'>
           {brand}
         </a>
+        <button
+          type='button'
+          className='nav-toggle'
+          aria-label={navOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={navOpen}
+          onClick={() => setNavOpen((open) => !open)}
+        >
+          <span />
+          <span />
+        </button>
         <nav className='nav-links' aria-label='Primary'>
-          {navItems.map((item) => (
-            <a key={item.href} href={item.href}>
-              {item.label}
-            </a>
-          ))}
+          {navItems.map((item) => {
+            const sectionId = item.href.replace("#", "");
+            const isActive = activeSection === sectionId;
+
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                className={isActive ? "is-active" : undefined}
+                onClick={() => setNavOpen(false)}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
         <a className='nav-cta' href='#contact'>
-          Let&apos;s Work
+          Let&apos;s Talk
         </a>
       </header>
 
       <main className='content-wrap'>
         <section id='home' className='hero-card'>
-          <p className='hero-pill'>Open to Work</p>
+          <p className='hero-pill'>{hero?.pill || "Available for freelance work"}</p>
           <h1>{hero?.headline}</h1>
           <p className='hero-role'>{hero?.role}</p>
           <p className='hero-location'>{hero?.availability}</p>
@@ -109,8 +164,13 @@ export default function App() {
             <a href='#projects' className='btn-primary'>
               See Projects
             </a>
-            <a href='#contact' className='btn-secondary'>
-              Contact Me
+            <a
+              href={siteConfig.social.whatsapp}
+              className='btn-secondary'
+              target='_blank'
+              rel='noreferrer'
+            >
+              WhatsApp Me
             </a>
           </div>
         </section>

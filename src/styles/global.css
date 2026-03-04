@@ -142,6 +142,38 @@ a {
   backdrop-filter: blur(10px);
 }
 
+.nav-toggle {
+  display: none;
+  width: 32px;
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(30, 211, 159, 0.65);
+  background: rgba(9, 18, 33, 0.9);
+  padding: 0 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.nav-toggle span {
+  display: block;
+  height: 2px;
+  width: 100%;
+  border-radius: 999px;
+  background: var(--accent);
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.top-nav.is-open .nav-toggle span:first-child {
+  transform: translateY(4px) rotate(45deg);
+}
+
+.top-nav.is-open .nav-toggle span:last-child {
+  transform: translateY(-4px) rotate(-45deg);
+}
+
 .brand-mark {
   font-family: "Syne", sans-serif;
   text-decoration: none;
@@ -172,6 +204,12 @@ a {
 
 .nav-links a:hover {
   border-color: var(--line);
+  color: var(--accent);
+}
+
+.nav-links a.is-active {
+  border-color: rgba(30, 211, 159, 0.65);
+  background: rgba(30, 211, 159, 0.16);
   color: var(--accent);
 }
 
@@ -583,13 +621,29 @@ a {
 @media (max-width: 760px) {
   .top-nav {
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
+  }
+
+  .nav-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+    width: 100%;
+    margin-top: 0.55rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .top-nav.is-open .nav-links {
+    display: flex;
   }
 
   .brand-mark,
   .nav-cta {
-    width: 100%;
-    text-align: center;
+    width: auto;
+    text-align: left;
   }
 
   .hero-card {

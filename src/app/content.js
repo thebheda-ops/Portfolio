@@ -26,18 +26,19 @@ export const pageContent = {
   brand: siteConfig.brand,
 
   hero: {
-    headline: "I build things for the web.",
-    role: "MERN Stack Developer · Problem Solver · Tech Enthusiast",
+    pill: "Available for freelance projects in Nepal",
+    headline: "MERN stack developer for local Nepali businesses.",
+    role: "Freelance MERN Stack Developer · Web Apps · Business Websites",
     availability: siteConfig.location,
     subtext:
-      "My focus is on creating clean, responsive, and user-centric digital experiences while solving real problems with practical code.",
+      "I help small businesses, agencies, and growing brands in Nepal get fast, modern web experiences built with the MERN stack. From simple business sites to custom web apps, I focus on clean implementation, realistic timelines, and clear communication (often right over WhatsApp).",
   },
 
   about: {
     // photoLabel is the fallback avatar text shown if you don't have a profile photo
     photoLabel: "BK",
     description:
-      "I don't just write code — I enjoy the challenge of solving complex problems and the constant journey of learning how to build better software. Driven by curiosity and a love for the craft, I'm looking for opportunities to contribute to innovative projects and grow alongside a talented team.",
+      "I'm a MERN stack developer and freelancer from Kathmandu who enjoys turning vague ideas into working products. Most of my work is with local clients — shop owners, travel businesses, and small teams — where I handle everything from planning and wireframes to deployment and small iterations after launch. I care about clear communication, predictable delivery, and building something that actually helps your business, not just look good on a portfolio.",
   },
 
   skillGroups: [
@@ -46,15 +47,15 @@ export const pageContent = {
       items: [
         {
           name: "React",
-          note: "Component-driven interfaces and reusable UI patterns.",
+          note: "Fast, responsive interfaces that feel smooth on both desktop and mobile.",
         },
         {
           name: "TypeScript",
-          note: "Strict typing for safer, more maintainable code.",
+          note: "Safer, more maintainable frontend code for complex features.",
         },
         {
           name: "Tailwind CSS",
-          note: "Rapid, consistent styling for responsive layouts.",
+          note: "Clean, consistent styling so sites look professional on every screen size.",
         },
       ],
     },
@@ -63,15 +64,15 @@ export const pageContent = {
       items: [
         {
           name: "WordPress",
-          note: "Business websites, content setup, and customization.",
+          note: "Practical business websites, content setup, and theme customization.",
         },
         {
           name: "Web Development",
-          note: "End-to-end implementation from UI to deployment.",
+          note: "End-to-end implementation from UI to deployment for local and online clients.",
         },
         {
           name: "Graphics",
-          note: "Basic visual assets and branding-friendly design work.",
+          note: "Basic visual assets so your site matches your brand and feels cohesive.",
         },
       ],
     },
@@ -80,15 +81,15 @@ export const pageContent = {
       items: [
         {
           name: "Node.js + Express",
-          note: "REST APIs and structured backend service patterns.",
+          note: "REST APIs and server logic for dashboards, bookings, and dynamic content.",
         },
         {
           name: "MongoDB",
-          note: "Schema design, querying, and app data integration.",
+          note: "Data models and queries for MERN applications.",
         },
         {
           name: "Git & Deployment",
-          note: "GitHub workflows, Vercel deployment, and CI basics.",
+          note: "GitHub workflows and deployment pipelines (Vercel and similar platforms).",
         },
       ],
     },
@@ -98,16 +99,16 @@ export const pageContent = {
     {
       period: "March 2023 – Present",
       title: "Freelance Web Developer",
-      org: "Independent",
+      org: "Independent · Kathmandu, Nepal",
       detail:
-        "Built websites for local businesses including tattoo studios and travel brands. Handled client communication, design feedback, and deployment.",
+        "Design and build websites and small web apps for local businesses in Nepal, including tattoo studios and travel brands. Typical work includes planning the site structure, implementing the UI, connecting forms and basic integrations, and deploying to production with follow-up tweaks based on client feedback.",
     },
     {
       period: "March 2023 – August 2024",
       title: "Web Developer",
       org: "Gizmo Store",
       detail:
-        "Delivered client-facing websites and improved user experience across web properties.",
+        "Worked on client-facing websites and internal tools, focusing on better user experience, cleaner layouts, and more stable deployments.",
     },
   ],
 
@@ -116,7 +117,7 @@ export const pageContent = {
       period: "Dec 2025 – Dec 2029",
       title: "Bachelor of Computer Application (BCA)",
       org: "Divya Gyan College of Technology and Management",
-      detail: "Computer Information Technology Administration and Management.",
+      detail: "Computer Information Technology administration and management.",
     },
     {
       period: "2023 – 2025",
@@ -131,24 +132,24 @@ export const pageContent = {
     {
       title: "Global Study Hub",
       summary:
-        "Platform for students to explore programs, compare options, and track applications in one place.",
-      stack: "React · Tailwind · JavaScript",
+        "Concept project for students to explore programs, compare options, and track applications in one place — designed for education consultancies and agencies.",
+      stack: "React · Tailwind CSS · JavaScript",
       liveUrl: "#",
       githubUrl: null,
     },
     {
       title: "Nepal Travels",
       summary:
-        "Responsive travel agency website with itinerary search flows, curated destination pages, and polished UX.",
-      stack: "React · Tailwind · Vite",
+        "Responsive travel agency website concept with itinerary highlights, destination pages, and clear calls-to-action to contact the agency.",
+      stack: "React · Tailwind CSS · Vite",
       liveUrl: "#",
       githubUrl: null,
     },
     {
       title: "Everest Guest House",
       summary:
-        "Booking-focused hospitality interface designed to increase inquiries and simplify the reservation flow.",
-      stack: "MERN · Booking Workflow",
+        "Booking-focused hospitality interface designed to increase inquiries and simplify the reservation flow for a local guest house.",
+      stack: "MERN · Booking workflow",
       liveUrl: "#",
       githubUrl: null,
     },
@@ -157,19 +158,19 @@ export const pageContent = {
   testimonials: [
     {
       quote:
-        "Fast turnaround, clean implementation, and communication that made the project move smoothly.",
-      by: "Freelance Client",
+        "Clear communication, fast turnaround, and a website that matched exactly what we discussed on calls.",
+      by: "Freelance Client · Kathmandu",
     },
     {
       quote:
-        "Strong understanding of both design and development. The final output felt production-ready.",
+        "Good balance between design and development. The site felt production-ready, not like a rough demo.",
       by: "Startup Collaborator",
     },
   ],
 
   contact: {
     intro:
-      "Explore my work and reach out for freelance opportunities or collaboration.",
+      "If you are a local business, agency, or team in Nepal and need a website or a web app, feel free to reach out. The fastest way to contact me is usually WhatsApp, but you can also email or connect on LinkedIn.",
     email: siteConfig.email,
     whatsappUrl: siteConfig.social.whatsapp,
     linkedinUrl: siteConfig.social.linkedin,
