@@ -127,13 +127,15 @@ export const pageContent = {
     },
   ],
 
-  // Add githubUrl / liveUrl per project. Set to null if not available — button won't render.
+  // Add imageUrl, githubUrl / liveUrl per project. Set to null if not available — button won't render.
   projects: [
     {
       title: "Global Study Hub",
       summary:
         "Concept project for students to explore programs, compare options, and track applications in one place — designed for education consultancies and agencies.",
       stack: "React · Tailwind CSS · JavaScript",
+      imageUrl:
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=600&h=400&fit=crop",
       liveUrl: "#",
       githubUrl: null,
     },
@@ -142,6 +144,8 @@ export const pageContent = {
       summary:
         "Responsive travel agency website concept with itinerary highlights, destination pages, and clear calls-to-action to contact the agency.",
       stack: "React · Tailwind CSS · Vite",
+      imageUrl:
+        "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=600&h=400&fit=crop",
       liveUrl: "#",
       githubUrl: null,
     },
@@ -150,6 +154,8 @@ export const pageContent = {
       summary:
         "Booking-focused hospitality interface designed to increase inquiries and simplify the reservation flow for a local guest house.",
       stack: "MERN · Booking workflow",
+      imageUrl:
+        "https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&h=400&fit=crop",
       liveUrl: "#",
       githubUrl: null,
     },
