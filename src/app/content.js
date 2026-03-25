@@ -162,20 +162,20 @@ export const pageContent = {
   ],
 
   featuredProject: {
-    title: "Tattoo Studio Website",
+    title: "LTMR Tattoo Studio Website",
     badge: "Featured Project",
     summary:
-      "A dark, premium portfolio site concept designed to showcase tattoo work and drive bookings through WhatsApp.",
-    stack: ["Next.js", "Tailwind CSS", "Responsive UI"],
+      "A dark, premium portfolio site for LTMR Tattoo Studio, built to showcase artwork and convert visitors into WhatsApp bookings.",
+    stack: ["Next.js", "Tailwind CSS", "Responsive UI", "WhatsApp Booking"],
     highlights: [
-      "Gallery-first layout to highlight artwork",
-      "WhatsApp booking flow for quick inquiries",
-      "Mobile-first layout for clients on the go",
+      "Gallery-first layout to highlight artist portfolios",
+      "WhatsApp booking flow for instant inquiries",
+      "Mobile-first layout for walk-in and Instagram traffic",
     ],
     imageUrl:
-      "https://images.unsplash.com/photo-1545239351-ef35f43d514b?w=900&h=640&fit=crop",
-    liveUrl: "#",
-    githubUrl: null,
+      "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=900&h=640&fit=crop",
+    liveUrl: "https://ltmr-tattoo-ink.vercel.app/",
+    githubUrl: "https://github.com/thebheda-ops/ltmr-tattoo-ink",
   },
 
   projects: [
