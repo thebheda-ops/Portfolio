@@ -276,6 +276,32 @@ h6 {
   font-weight: 800;
   color: var(--accent);
   letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.brand-text {
+  color: var(--accent);
+  font-weight: 800;
+}
+
+.brand-icon-wrap {
+  width: 34px;
+  height: 34px;
+  border-radius: 12px;
+  background: var(--gradient-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 10px 22px rgba(230, 57, 70, 0.35);
+}
+
+.brand-icon {
+  width: 20px;
+  height: 20px;
+  display: block;
+  filter: invert(1);
 }
 
 .nav-links {
@@ -382,6 +408,9 @@ h6 {
   font-size: 1.1rem;
   font-weight: 700;
   color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
 }
 
 .mobile-nav-close {
@@ -445,6 +474,7 @@ h6 {
   margin-top: 6rem;
   display: grid;
   gap: 2.5rem;
+  max-width: 100%;
 }
 
 /* Reveal Animations */
@@ -473,6 +503,7 @@ h6 {
   justify-content: space-between;
   gap: 2rem;
   min-height: 70vh;
+  max-width: 100%;
 }
 
 .hero-section::before {
@@ -492,6 +523,7 @@ h6 {
   z-index: 1;
   flex: 1;
   max-width: 600px;
+  min-width: 0;
 }
 
 /* Hero Image */
@@ -499,6 +531,7 @@ h6 {
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+  min-width: 0;
 }
 
 .hero-avatar {
@@ -585,6 +618,7 @@ h6 {
   font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--text-primary);
   letter-spacing: -0.02em;
+  overflow-wrap: anywhere;
 }
 
 .hero-title .highlight {
@@ -718,6 +752,8 @@ h6 {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-sm);
   backdrop-filter: blur(6px);
+  max-width: 100%;
+  overflow: hidden;
 }
 
 .section-header {
@@ -994,12 +1030,15 @@ h6 {
   border: 1px solid var(--border);
   box-shadow: var(--shadow-md);
   margin-bottom: 2rem;
+  max-width: 100%;
 }
 
 .featured-body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  min-width: 0;
+  width: 100%;
 }
 
 .featured-badge {
@@ -1023,6 +1062,7 @@ h6 {
 .featured-body p {
   margin: 0;
   color: var(--text-secondary);
+  overflow-wrap: anywhere;
 }
 
 .featured-body ul {
@@ -1044,12 +1084,16 @@ h6 {
   min-height: 260px;
   border: 1px solid var(--border);
   background: var(--bg-tertiary);
+  aspect-ratio: 4 / 3;
+  min-width: 0;
+  width: 100%;
 }
 
 .featured-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   display: block;
 }
 
@@ -1062,6 +1106,7 @@ h6 {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 1.5rem;
+  max-width: 100%;
 }
 
 .projects-hint {
@@ -1082,6 +1127,7 @@ h6 {
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  max-width: 100%;
 }
 
 .project-card:hover {
@@ -1095,6 +1141,7 @@ h6 {
   height: 200px;
   overflow: hidden;
   position: relative;
+  aspect-ratio: 4 / 3;
 }
 
 .project-image img {
@@ -1113,6 +1160,7 @@ h6 {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
+  min-width: 0;
 }
 
 .project-card h3 {
@@ -1127,6 +1175,7 @@ h6 {
   font-size: 0.95rem;
   line-height: 1.6;
   flex-grow: 1;
+  overflow-wrap: anywhere;
 }
 
 .project-highlights {
@@ -1374,21 +1423,90 @@ h6 {
 /* Footer */
 .site-foot {
   margin-top: 3rem;
-  padding: 2rem 0;
-  text-align: center;
+  padding: 2.5rem 0 1.5rem;
   border-top: 1px solid var(--border);
 }
 
-.site-foot p {
-  margin: 0;
-  color: var(--text-muted);
-  font-size: 0.9rem;
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
 }
 
-.site-foot .brand {
+.footer-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.footer-brand {
   font-family: "Space Grotesk", sans-serif;
+  font-size: 1.3rem;
   font-weight: 700;
   color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.footer-note {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.footer-cta {
+  display: flex;
+}
+
+.footer-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.footer-pill:hover {
+  border-color: var(--accent-light);
+  color: var(--accent-light);
+}
+
+.footer-card h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: var(--text-primary);
+}
+
+.footer-links {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.footer-links a {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent-light);
+}
+
+.footer-bottom {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
 }
 
 /* Floating Contact Pill */
@@ -1484,6 +1602,17 @@ h6 {
 
   .nav-toggle {
     display: flex;
+  }
+
+  .brand-icon-wrap {
+    width: 30px;
+    height: 30px;
+    border-radius: 10px;
+  }
+
+  .brand-icon {
+    width: 18px;
+    height: 18px;
   }
 
   .top-nav.is-open .nav-toggle {
@@ -1606,11 +1735,13 @@ h6 {
     overflow-x: auto;
     scroll-snap-type: x mandatory;
     padding-bottom: 0.5rem;
+    max-width: 100%;
   }
 
   .project-card {
     min-width: 85%;
     scroll-snap-align: start;
+    max-width: 100%;
   }
 
   .projects-grid::-webkit-scrollbar {
@@ -1649,17 +1780,46 @@ h6 {
   }
 
   .featured-card {
-    padding: 1.5rem;
+    padding: 1.25rem;
     gap: 1.25rem;
+    grid-template-columns: 1fr;
+    align-items: stretch;
   }
 
   .featured-media {
-    min-height: 200px;
+    min-height: 180px;
+    max-height: 220px;
     order: -1;
+    aspect-ratio: 16 / 9;
+  }
+
+  .featured-body {
+    order: 1;
+  }
+
+  .featured-body h3 {
+    font-size: 1.25rem;
+  }
+
+  .featured-body p {
+    font-size: 0.95rem;
+  }
+
+  .featured-body ul {
+    margin-top: 0.4rem;
   }
 
   .contact-layout {
     grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 

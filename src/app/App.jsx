@@ -1,5 +1,6 @@
 import { useEffect, useState } from "preact/hooks";
 import { pageContent, siteConfig } from "./content";
+import brandIcon from "../assets/icon.svg";
 
 const sectionIds = [
   "home",
@@ -360,7 +361,10 @@ export default function App() {
 
       <header className={`top-nav ${navOpen ? "is-open" : ""}`}>
         <a href='#home' className='brand-mark'>
-          {brand}
+          <span className='brand-icon-wrap'>
+            <img src={brandIcon} alt={`${brand} logo`} className='brand-icon' />
+          </span>
+          <span className='brand-text'>{brand}</span>
         </a>
         <button
           type='button'
@@ -418,7 +422,12 @@ export default function App() {
         />
         <div className='mobile-nav-panel' role='dialog' aria-label='Mobile menu'>
           <div className='mobile-nav-header'>
-            <span className='mobile-nav-brand'>{brand}</span>
+            <span className='mobile-nav-brand'>
+              <span className='brand-icon-wrap'>
+                <img src={brandIcon} alt={`${brand} logo`} className='brand-icon' />
+              </span>
+              <span className='brand-text'>{brand}</span>
+            </span>
             <button
               type='button'
               className='mobile-nav-close'
@@ -827,11 +836,77 @@ export default function App() {
         </section>
       </main>
 
-      <footer className='site-foot'>
-        <p>
-          <span className='brand'>{brand}</span> - {new Date().getFullYear()} -
-          Built with passion
-        </p>
+      <footer className='site-foot' data-reveal>
+        <div className='footer-grid'>
+          <div className='footer-card'>
+            <div className='footer-brand'>
+              <span className='brand-icon-wrap'>
+                <img src={brandIcon} alt={`${brand} logo`} className='brand-icon' />
+              </span>
+              <span className='brand-text'>{brand}</span>
+            </div>
+            <p className='footer-note'>
+              {hero?.headline ||
+                "Frontend developer focused on clean, fast web experiences."}
+            </p>
+            <div className='footer-cta'>
+              <a
+                className='footer-pill'
+                href='#contact'
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("contact");
+                }}
+              >
+                Let's Talk
+              </a>
+            </div>
+          </div>
+          <div className='footer-card'>
+            <h3>Quick Links</h3>
+            <div className='footer-links'>
+              {navItems.map((item) => (
+                <a
+                  key={item.id}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
+                >
+                  {item.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div className='footer-card'>
+            <h3>Contact</h3>
+            <div className='footer-links'>
+              {contact?.email && (
+                <a href={`mailto:${contact.email}`}>Email</a>
+              )}
+              {contact?.whatsappUrl && (
+                <a href={contact.whatsappUrl} target='_blank' rel='noreferrer'>
+                  WhatsApp
+                </a>
+              )}
+              {contact?.linkedinUrl && (
+                <a href={contact.linkedinUrl} target='_blank' rel='noreferrer'>
+                  LinkedIn
+                </a>
+              )}
+              {contact?.githubUrl && (
+                <a href={contact.githubUrl} target='_blank' rel='noreferrer'>
+                  GitHub
+                </a>
+              )}
+            </div>
+          </div>
+        </div>
+        <div className='footer-bottom'>
+          <span>© {new Date().getFullYear()} {brand}. All rights reserved.</span>
+          <span>Built with care in Kathmandu.</span>
+        </div>
       </footer>
 
       <a
