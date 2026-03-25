@@ -1,3 +1,5 @@
+import ltmrTattooImage from "../assets/ltmrtattoo.png";
+
 export const siteConfig = {
   brand: "BTM",
   name: "Bal Krishna Thapa Magar",
@@ -172,8 +174,7 @@ export const pageContent = {
       "WhatsApp booking flow for instant inquiries",
       "Mobile-first layout for walk-in and Instagram traffic",
     ],
-    imageUrl:
-      "https://images.unsplash.com/photo-1517420704952-d9f39e95b43e?w=900&h=640&fit=crop",
+    imageUrl: ltmrTattooImage,
     liveUrl: "https://ltmr-tattoo-ink.vercel.app/",
     githubUrl: "https://github.com/thebheda-ops/ltmr-tattoo-ink",
   },
