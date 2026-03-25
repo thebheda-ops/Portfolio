@@ -49,6 +49,7 @@ html,
 body,
 #root {
   min-height: 100%;
+  width: 100%;
 }
 
 html {
@@ -62,6 +63,7 @@ body {
   font-family: "Manrope", "Segoe UI", sans-serif;
   line-height: 1.6;
   -webkit-text-size-adjust: 100%;
+  overflow-x: hidden;
 }
 
 a {
@@ -356,6 +358,9 @@ h6 {
   transform: translateY(-12px);
   opacity: 0;
   transition: opacity 0.25s ease, transform 0.25s ease;
+  max-height: calc(100vh - 6rem - env(safe-area-inset-top));
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .mobile-nav.is-open .mobile-nav-panel {
@@ -1468,7 +1473,7 @@ h6 {
   }
 
   .content-wrap {
-    margin-top: 5.5rem;
+    margin-top: calc(5.5rem + env(safe-area-inset-top));
   }
 
   .nav-links,
@@ -1478,6 +1483,11 @@ h6 {
 
   .nav-toggle {
     display: flex;
+  }
+
+  .top-nav.is-open .nav-toggle {
+    opacity: 0;
+    pointer-events: none;
   }
 
   .top-nav.is-open .nav-links {
