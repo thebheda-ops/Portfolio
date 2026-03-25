@@ -232,6 +232,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
+    if (typeof document === "undefined") return;
+
+    document.body.style.overflow = navOpen ? "hidden" : "";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [navOpen]);
+
+  useEffect(() => {
     if (typeof window === "undefined") return;
 
     const elements = Array.from(document.querySelectorAll("[data-reveal]"));
@@ -395,6 +405,69 @@ export default function App() {
           Let's Talk
         </a>
       </header>
+
+      <div
+        className={`mobile-nav ${navOpen ? "is-open" : ""}`}
+        aria-hidden={!navOpen}
+      >
+        <button
+          type='button'
+          className='mobile-nav-backdrop'
+          aria-label='Close navigation menu'
+          onClick={() => setNavOpen(false)}
+        />
+        <div className='mobile-nav-panel' role='dialog' aria-label='Mobile menu'>
+          <div className='mobile-nav-header'>
+            <span className='mobile-nav-brand'>{brand}</span>
+            <button
+              type='button'
+              className='mobile-nav-close'
+              aria-label='Close navigation menu'
+              onClick={() => setNavOpen(false)}
+            >
+              <span />
+              <span />
+            </button>
+          </div>
+          <nav className='mobile-nav-links' aria-label='Mobile primary'>
+            {navItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                  setNavOpen(false);
+                }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
+          <div className='mobile-nav-actions'>
+            <a
+              href='#contact'
+              className='btn-primary'
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection("contact");
+                setNavOpen(false);
+              }}
+            >
+              Let's Talk
+            </a>
+            <a
+              href={contact?.whatsappUrl || siteConfig.social.whatsapp}
+              className='btn-secondary'
+              target='_blank'
+              rel='noreferrer'
+              onClick={() => setNavOpen(false)}
+            >
+              <WhatsAppIcon /> WhatsApp
+            </a>
+          </div>
+        </div>
+      </div>
 
       <main className='content-wrap'>
         <section id='home' className='hero-section' data-reveal>
@@ -669,7 +742,7 @@ export default function App() {
               );
             })}
           </div>
-          <p className='projects-hint'>Swipe to explore more →</p>
+          <p className='projects-hint'>Swipe to explore more -&gt;</p>
         </section>
 
         {Array.isArray(testimonials) && testimonials.length > 0 && (
