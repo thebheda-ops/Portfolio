@@ -249,6 +249,7 @@ h6 {
   align-items: center;
   justify-content: center;
   gap: 5px;
+  transition: opacity 0.2s ease, transform 0.2s ease;
 }
 
 .nav-toggle span {
@@ -1487,6 +1488,7 @@ h6 {
 
   .top-nav.is-open .nav-toggle {
     opacity: 0;
+    transform: scale(0.85);
     pointer-events: none;
   }
 
@@ -1505,6 +1507,12 @@ h6 {
     flex-direction: column;
   }
 
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+
   .hero-image {
     order: -1;
     align-self: center;
@@ -1518,25 +1526,36 @@ h6 {
 
   .hero-title {
     font-size: 2.25rem;
+    margin-bottom: 0.35rem;
+    word-break: break-word;
   }
 
   .hero-role {
     font-size: 0.85rem;
     letter-spacing: 0.12em;
+    margin-bottom: 0.2rem;
   }
 
   .hero-headline {
     font-size: 1.15rem;
+    margin-bottom: 0.3rem;
   }
 
   .hero-description {
     font-size: 1rem;
+    margin-bottom: 0.8rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .hero-badges {
     gap: 0.5rem;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin: 0;
+    order: 7;
   }
 
   .badge {
@@ -1548,6 +1567,8 @@ h6 {
   .hero-actions {
     flex-direction: column;
     align-items: stretch;
+    order: 6;
+    margin-bottom: 0.5rem;
   }
 
   .btn-primary,
@@ -1657,6 +1678,11 @@ h6 {
 
   .hero-pill {
     font-size: 0.7rem;
+  }
+
+  .hero-avatar {
+    width: 140px;
+    height: 140px;
   }
 
   .contact-card {
