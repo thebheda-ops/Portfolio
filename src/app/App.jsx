@@ -4,18 +4,20 @@ import { pageContent, siteConfig } from "./content";
 const sectionIds = [
   "home",
   "about",
+  "services",
   "skills",
   "experience",
   "education",
   "projects",
+  "testimonials",
+  "availability",
   "contact",
 ];
 
 const navItems = [
   { id: "about", label: "About" },
+  { id: "services", label: "Services" },
   { id: "skills", label: "Skills" },
-  { id: "experience", label: "Experience" },
-  { id: "education", label: "Education" },
   { id: "projects", label: "Projects" },
   { id: "contact", label: "Contact" },
 ];
@@ -27,7 +29,6 @@ function scrollToSection(id) {
   }
 }
 
-// Icon components
 const MapPinIcon = () => (
   <svg
     width='16'
@@ -164,7 +165,7 @@ const WhatsAppIcon = () => (
   </svg>
 );
 
-function TimelineList({ items, title }) {
+function TimelineList({ items }) {
   if (!Array.isArray(items) || !items.length) return null;
 
   return (
@@ -173,7 +174,8 @@ function TimelineList({ items, title }) {
         <article
           key={`${item.title}-${item.period}-${index}`}
           className='timeline-item'
-          style={{ animationDelay: `${index * 0.1}s` }}
+          data-reveal
+          style={{ transitionDelay: `${index * 0.08}s` }}
         >
           <p className='timeline-period'>{item.period}</p>
           <h3>{item.title}</h3>
@@ -193,11 +195,14 @@ export default function App() {
     brand,
     hero,
     about,
+    services,
     skillGroups,
     experience,
     education,
+    featuredProject,
     projects,
     testimonials,
+    availability,
     contact,
   } = pageContent;
 
@@ -215,7 +220,7 @@ export default function App() {
           }
         });
       },
-      { root: null, rootMargin: "-20% 0px -60% 0px", threshold: 0.1 },
+      { root: null, rootMargin: "-25% 0px -60% 0px", threshold: 0.1 },
     );
 
     sectionIds.forEach((id) => {
@@ -226,11 +231,34 @@ export default function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const elements = Array.from(document.querySelectorAll("[data-reveal]"));
+    if (!elements.length) return undefined;
+
+    const revealObserver = new IntersectionObserver(
+      (entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            obs.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.15 },
+    );
+
+    elements.forEach((el) => revealObserver.observe(el));
+
+    return () => revealObserver.disconnect();
+  }, []);
+
   const contactLinks = [
     contact?.email
       ? {
           label: "Email",
-          value: "balkrishnathapamagar2005@gmail.com",
+          value: contact.email,
           href: `mailto:${contact.email}`,
           icon: <MailIcon />,
           className: "",
@@ -263,23 +291,63 @@ export default function App() {
           className: "whatsapp",
         }
       : null,
+    contact?.resumeUrl
+      ? {
+          label: "Resume",
+          value: "Download PDF",
+          href: contact.resumeUrl,
+          icon: <ExternalLinkIcon />,
+          className: "",
+        }
+      : null,
   ].filter(Boolean);
+
+  const renderProjectLinks = (project) => {
+    const hasLive = Boolean(project.liveUrl && project.liveUrl !== "#");
+    const hasGitHub = Boolean(project.githubUrl && project.githubUrl !== "#");
+
+    return (
+      <div className='project-links'>
+        {hasGitHub ? (
+          <a
+            href={project.githubUrl}
+            className='project-link secondary'
+            target='_blank'
+            rel='noreferrer'
+          >
+            <GithubIcon /> Code
+          </a>
+        ) : (
+          <span className='chip-muted'>Private Repo</span>
+        )}
+        {hasLive ? (
+          <a
+            href={project.liveUrl}
+            className='project-link primary'
+            target='_blank'
+            rel='noreferrer'
+          >
+            Live Demo <ExternalLinkIcon />
+          </a>
+        ) : (
+          <span className='chip-muted'>Coming Soon</span>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className='portfolio-shell'>
-      {/* Background Decorations */}
       <div className='bg-decoration bg-decoration-1' aria-hidden='true' />
       <div className='bg-decoration bg-decoration-2' aria-hidden='true' />
       <div className='bg-decoration bg-decoration-3' aria-hidden='true' />
 
-      {/* Floating Shapes */}
       <div className='floating-shapes' aria-hidden='true'>
         <div className='floating-shape floating-shape-1' />
         <div className='floating-shape floating-shape-2' />
         <div className='floating-shape floating-shape-3' />
       </div>
 
-      {/* Navigation */}
       <header className={`top-nav ${navOpen ? "is-open" : ""}`}>
         <a href='#home' className='brand-mark'>
           {brand}
@@ -328,23 +396,31 @@ export default function App() {
         </a>
       </header>
 
-      {/* Main Content */}
       <main className='content-wrap'>
-        {/* Hero Section */}
-        <section id='home' className='hero-section'>
+        <section id='home' className='hero-section' data-reveal>
           <div className='hero-content'>
             <span className='hero-pill'>
-              {hero?.pill || "Available for freelance work"}
+              {hero?.pill || "Available for frontend roles"}
             </span>
             <h1 className='hero-title'>
-              Hi, I'm <span className='highlight'>Bal Krishna</span>
+              Hi, I'm <span className='highlight'>{hero?.name || siteConfig.name}</span>
             </h1>
-            <p className='hero-subtitle'>{hero?.role}</p>
+            <p className='hero-role'>{hero?.role}</p>
+            <p className='hero-headline'>{hero?.headline}</p>
             <p className='hero-location'>
               <MapPinIcon />
               {hero?.availability}
             </p>
             <p className='hero-description'>{hero?.subtext}</p>
+            {Array.isArray(hero?.badges) && hero.badges.length > 0 && (
+              <div className='hero-badges'>
+                {hero.badges.map((item) => (
+                  <span key={item} className='badge'>
+                    {item}
+                  </span>
+                ))}
+              </div>
+            )}
             <div className='hero-actions'>
               <a
                 href='#projects'
@@ -354,23 +430,35 @@ export default function App() {
                   scrollToSection("projects");
                 }}
               >
-                View Projects <ArrowRightIcon />
+                View Work <ArrowRightIcon />
               </a>
               <a
-                href={siteConfig.social.whatsapp}
+                href='#contact'
                 className='btn-secondary'
-                target='_blank'
-                rel='noreferrer'
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("contact");
+                }}
               >
-                <WhatsAppIcon /> WhatsApp Me
+                Contact Me
               </a>
+              {siteConfig.social.resume ? (
+                <a
+                  href={siteConfig.social.resume}
+                  className='btn-ghost'
+                  target='_blank'
+                  rel='noreferrer'
+                >
+                  Download Resume
+                </a>
+              ) : null}
             </div>
           </div>
           <div className='hero-image'>
             <div className='hero-avatar'>
               <img
                 src={siteConfig.photoUrl}
-                alt='Bal Krishna Thapa Magar'
+                alt={hero?.name}
                 onError={(e) => {
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextSibling.style.display = "flex";
@@ -383,21 +471,54 @@ export default function App() {
           </div>
         </section>
 
-        {/* About Section */}
-        <section id='about' className='section-card'>
+        <section id='about' className='section-card' data-reveal>
           <div className='section-header'>
             <span className='section-number'>01</span>
             <h2 className='section-title'>About Me</h2>
           </div>
           <div className='about-content'>
             <p className='about-text'>{about?.description}</p>
+            {Array.isArray(about?.highlights) && (
+              <ul className='about-list'>
+                {about.highlights.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            )}
           </div>
         </section>
 
-        {/* Skills Section */}
-        <section id='skills' className='section-card'>
+        <section id='services' className='section-card' data-reveal>
           <div className='section-header'>
             <span className='section-number'>02</span>
+            <h2 className='section-title'>Services</h2>
+          </div>
+          {services?.intro && (
+            <p className='section-description'>{services.intro}</p>
+          )}
+          <div className='services-grid'>
+            {(services?.items ?? []).map((service, index) => (
+              <article
+                key={service.title}
+                className='service-card'
+                data-reveal
+                style={{ transitionDelay: `${index * 0.08}s` }}
+              >
+                <h3>{service.title}</h3>
+                <p>{service.description}</p>
+                <ul>
+                  {(service.bullets ?? []).map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id='skills' className='section-card' data-reveal>
+          <div className='section-header'>
+            <span className='section-number'>03</span>
             <h2 className='section-title'>Skills & Expertise</h2>
           </div>
           <div className='skills-grid'>
@@ -405,7 +526,8 @@ export default function App() {
               <article
                 key={group.title}
                 className='skill-card'
-                style={{ animationDelay: `${index * 0.15}s` }}
+                data-reveal
+                style={{ transitionDelay: `${index * 0.08}s` }}
               >
                 <div className='skill-card-header'>
                   <div className={`skill-icon ${index === 1 ? "teal" : ""}`}>
@@ -423,7 +545,7 @@ export default function App() {
                   {(group.items ?? []).map((item) => (
                     <li key={item.name}>
                       <span>
-                        <strong>{item.name}</strong> — {item.note}
+                        <strong>{item.name}</strong> - {item.note}
                       </span>
                     </li>
                   ))}
@@ -433,52 +555,87 @@ export default function App() {
           </div>
         </section>
 
-        {/* Experience & Education */}
         <div className='two-col'>
-          <section id='experience' className='section-card'>
+          <section id='experience' className='section-card' data-reveal>
             <div className='section-header'>
-              <span className='section-number'>03</span>
+              <span className='section-number'>04</span>
               <h2 className='section-title'>Experience</h2>
             </div>
             <TimelineList items={experience} />
           </section>
 
-          <section id='education' className='section-card'>
+          <section id='education' className='section-card' data-reveal>
             <div className='section-header'>
-              <span className='section-number'>04</span>
+              <span className='section-number'>05</span>
               <h2 className='section-title'>Education</h2>
             </div>
             <TimelineList items={education} />
           </section>
         </div>
 
-        {/* Projects Section */}
         <section id='projects' className='section-card'>
-          <div className='section-header'>
-            <span className='section-number'>05</span>
-            <h2 className='section-title'>Featured Projects</h2>
+          <div className='section-header' data-reveal>
+            <span className='section-number'>06</span>
+            <h2 className='section-title'>Featured Work</h2>
           </div>
+          {featuredProject ? (
+            <article className='featured-card' data-reveal>
+              <div className='featured-body'>
+                {featuredProject.badge && (
+                  <span className='featured-badge'>{featuredProject.badge}</span>
+                )}
+                <h3>{featuredProject.title}</h3>
+                <p>{featuredProject.summary}</p>
+                {Array.isArray(featuredProject.highlights) && (
+                  <ul>
+                    {featuredProject.highlights.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+                <div className='project-stack'>
+                  {(featuredProject.stack ?? []).map((tag) => (
+                    <span key={tag} className='tech-tag'>
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                {renderProjectLinks(featuredProject)}
+              </div>
+              <div className='featured-media'>
+                {featuredProject.imageUrl ? (
+                  <img
+                    src={featuredProject.imageUrl}
+                    alt={featuredProject.title}
+                    loading='lazy'
+                  />
+                ) : (
+                  <div className='featured-placeholder' />
+                )}
+              </div>
+            </article>
+          ) : null}
+
+          <div className='section-subheader' data-reveal>
+            <h3>More Projects</h3>
+            <p>Additional concept builds focused on real business needs.</p>
+          </div>
+
           <div className='projects-grid'>
             {(projects ?? []).map((project, index) => {
-              const hasLive = Boolean(
-                project.liveUrl && project.liveUrl !== "#",
-              );
-              const hasGitHub = Boolean(
-                project.githubUrl && project.githubUrl !== "#",
-              );
-
-              // Split stack into tags
-              const stackTags = project.stack
-                ? project.stack.split("·").map((s) => s.trim())
-                : [];
+              const stackTags = Array.isArray(project.stack)
+                ? project.stack
+                : project.stack
+                  ? project.stack.split("|").map((s) => s.trim())
+                  : [];
 
               return (
                 <article
                   key={project.title}
                   className='project-card'
-                  style={{ animationDelay: `${index * 0.15}s` }}
+                  data-reveal
+                  style={{ transitionDelay: `${index * 0.08}s` }}
                 >
-                  {/* Project Image */}
                   {project.imageUrl && (
                     <div className='project-image'>
                       <img
@@ -491,6 +648,14 @@ export default function App() {
                   <div className='project-content'>
                     <h3>{project.title}</h3>
                     <p className='project-summary'>{project.summary}</p>
+                    {Array.isArray(project.highlights) &&
+                      project.highlights.length > 0 && (
+                        <ul className='project-highlights'>
+                          {project.highlights.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      )}
                     <div className='project-stack'>
                       {stackTags.map((tag, i) => (
                         <span key={i} className='tech-tag'>
@@ -498,61 +663,73 @@ export default function App() {
                         </span>
                       ))}
                     </div>
-                    <div className='project-links'>
-                      {hasGitHub ? (
-                        <a
-                          href={project.githubUrl}
-                          className='project-link secondary'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          <GithubIcon /> Code
-                        </a>
-                      ) : (
-                        <span className='chip-muted'>Private Repo</span>
-                      )}
-                      {hasLive ? (
-                        <a
-                          href={project.liveUrl}
-                          className='project-link primary'
-                          target='_blank'
-                          rel='noreferrer'
-                        >
-                          Live Demo <ExternalLinkIcon />
-                        </a>
-                      ) : (
-                        <span className='chip-muted'>Coming Soon</span>
-                      )}
-                    </div>
+                    {renderProjectLinks(project)}
                   </div>
                 </article>
               );
             })}
           </div>
+          <p className='projects-hint'>Swipe to explore more →</p>
         </section>
 
-        {/* Contact Section */}
-        <section id='contact' className='section-card'>
+        {Array.isArray(testimonials) && testimonials.length > 0 && (
+          <section id='testimonials' className='section-card' data-reveal>
+            <div className='section-header'>
+              <span className='section-number'>07</span>
+              <h2 className='section-title'>Client Notes</h2>
+            </div>
+            <div className='testimonials-grid'>
+              {testimonials.map((testimonial, index) => (
+                <figure
+                  key={`${testimonial.by}-${index}`}
+                  className='testimonial-card'
+                  data-reveal
+                  style={{ transitionDelay: `${index * 0.08}s` }}
+                >
+                  <blockquote className='testimonial-quote'>
+                    {testimonial.quote}
+                  </blockquote>
+                  <figcaption className='testimonial-by'>
+                    {testimonial.by}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {availability && (
+          <section id='availability' className='section-card' data-reveal>
+            <div className='section-header'>
+              <span className='section-number'>08</span>
+              <h2 className='section-title'>{availability.title}</h2>
+            </div>
+            <p className='section-description'>{availability.subtitle}</p>
+            <div className='availability-grid'>
+              {(availability.roles ?? []).map((role) => (
+                <div key={role} className='availability-card'>
+                  {role}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        <section id='contact' className='section-card' data-reveal>
           <div className='section-header'>
-            <span className='section-number'>06</span>
+            <span className='section-number'>09</span>
             <h2 className='section-title'>Get In Touch</h2>
           </div>
           <div className='contact-layout'>
             <div className='contact-copy'>
               <p className='contact-intro'>{contact?.intro}</p>
-              <ul className='contact-notes'>
-                <li>
-                  Based in Kathmandu and working remotely with clients across
-                  Nepal.
-                </li>
-                <li>
-                  Available for freelance MERN projects, business websites, and
-                  dashboards.
-                </li>
-                <li>
-                  Fastest response is usually on WhatsApp during daytime (NPT).
-                </li>
-              </ul>
+              {Array.isArray(contact?.notes) && (
+                <ul className='contact-notes'>
+                  {contact.notes.map((note) => (
+                    <li key={note}>{note}</li>
+                  ))}
+                </ul>
+              )}
             </div>
             <div className='contact-grid'>
               {contactLinks.map((link) => (
@@ -577,13 +754,40 @@ export default function App() {
         </section>
       </main>
 
-      {/* Footer */}
       <footer className='site-foot'>
         <p>
-          <span className='brand'>{brand}</span> • {new Date().getFullYear()} •
+          <span className='brand'>{brand}</span> - {new Date().getFullYear()} -
           Built with passion
         </p>
       </footer>
+
+      <a
+        className='contact-pill'
+        href='#contact'
+        onClick={(e) => {
+          e.preventDefault();
+          scrollToSection("contact");
+        }}
+      >
+        Contact Me
+      </a>
+
+      <div className='mobile-hirebar' aria-label='Quick contact'>
+        <a
+          className='hirebar-btn primary'
+          href={contact?.whatsappUrl || siteConfig.social.whatsapp}
+          target='_blank'
+          rel='noreferrer'
+        >
+          <WhatsAppIcon /> WhatsApp
+        </a>
+        <a
+          className='hirebar-btn'
+          href={`mailto:${contact?.email || siteConfig.email}`}
+        >
+          <MailIcon /> Email
+        </a>
+      </div>
     </div>
   );
 }
