@@ -420,11 +420,19 @@ export default function App() {
           aria-label='Close navigation menu'
           onClick={() => setNavOpen(false)}
         />
-        <div className='mobile-nav-panel' role='dialog' aria-label='Mobile menu'>
+        <div
+          className='mobile-nav-panel'
+          role='dialog'
+          aria-label='Mobile menu'
+        >
           <div className='mobile-nav-header'>
             <span className='mobile-nav-brand'>
               <span className='brand-icon-wrap'>
-                <img src={brandIcon} alt={`${brand} logo`} className='brand-icon' />
+                <img
+                  src={brandIcon}
+                  alt={`${brand} logo`}
+                  className='brand-icon'
+                />
               </span>
               <span className='brand-text'>{brand}</span>
             </span>
@@ -485,7 +493,8 @@ export default function App() {
               {hero?.pill || "Available for frontend roles"}
             </span>
             <h1 className='hero-title'>
-              Hi, I'm <span className='highlight'>{hero?.name || siteConfig.name}</span>
+              Hi, I'm{" "}
+              <span className='highlight'>{hero?.name || siteConfig.name}</span>
             </h1>
             <p className='hero-role'>{hero?.role}</p>
             <p className='hero-headline'>{hero?.headline}</p>
@@ -524,7 +533,7 @@ export default function App() {
               >
                 Contact Me
               </a>
-              {siteConfig.social.resume ? (
+              {siteConfig.social.resume && (
                 <a
                   href={siteConfig.social.resume}
                   className='btn-ghost'
@@ -533,7 +542,7 @@ export default function App() {
                 >
                   Download Resume
                 </a>
-              ) : null}
+              )}
             </div>
           </div>
           <div className='hero-image'>
@@ -664,7 +673,9 @@ export default function App() {
             <article className='featured-card' data-reveal>
               <div className='featured-body'>
                 {featuredProject.badge && (
-                  <span className='featured-badge'>{featuredProject.badge}</span>
+                  <span className='featured-badge'>
+                    {featuredProject.badge}
+                  </span>
                 )}
                 <h3>{featuredProject.title}</h3>
                 <p>{featuredProject.summary}</p>
@@ -841,7 +852,11 @@ export default function App() {
           <div className='footer-card'>
             <div className='footer-brand'>
               <span className='brand-icon-wrap'>
-                <img src={brandIcon} alt={`${brand} logo`} className='brand-icon' />
+                <img
+                  src={brandIcon}
+                  alt={`${brand} logo`}
+                  className='brand-icon'
+                />
               </span>
               <span className='brand-text'>{brand}</span>
             </div>
@@ -882,9 +897,7 @@ export default function App() {
           <div className='footer-card'>
             <h3>Contact</h3>
             <div className='footer-links'>
-              {contact?.email && (
-                <a href={`mailto:${contact.email}`}>Email</a>
-              )}
+              {contact?.email && <a href={`mailto:${contact.email}`}>Email</a>}
               {contact?.whatsappUrl && (
                 <a href={contact.whatsappUrl} target='_blank' rel='noreferrer'>
                   WhatsApp
@@ -904,7 +917,9 @@ export default function App() {
           </div>
         </div>
         <div className='footer-bottom'>
-          <span>© {new Date().getFullYear()} {brand}. All rights reserved.</span>
+          <span>
+            © {new Date().getFullYear()} {brand}. All rights reserved.
+          </span>
           <span>Built with care in Kathmandu.</span>
         </div>
       </footer>

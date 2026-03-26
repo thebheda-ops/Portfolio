@@ -12,7 +12,8 @@ export const siteConfig = {
     whatsapp: "https://wa.me/9779705086562",
     linkedin: "https://www.linkedin.com/in/bal-krishna-thapa-magar-02603a346/",
     portfolio: "https://balkrishna-thapamagar.vercel.app/",
-    resume: "",
+    resume:
+      "https://drive.google.com/file/d/1cpgQrtywcHZvT5ge5uSCUsJZxS_X8wY5/view?usp=drive_link",
   },
 };
 
@@ -119,10 +120,7 @@ export const pageContent = {
           name: "Git + GitHub",
           note: "Version control and collaboration workflows.",
         },
-        {
-          name: "Vercel",
-          note: "Fast deployments and modern hosting.",
-        },
+        { name: "Vercel", note: "Fast deployments and modern hosting." },
         {
           name: "Figma",
           note: "Interpreting and implementing design systems.",
